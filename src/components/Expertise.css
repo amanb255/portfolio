@@ -1,0 +1,136 @@
+.expertise {
+  background: var(--bg-primary);
+  padding: 3rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.expertise-statement {
+  max-width: 900px;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+
+.expertise-text {
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  line-height: 1.6;
+  color: var(--text-secondary);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.expertise-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.expertise-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  will-change: transform, opacity;
+}
+
+.expertise-media {
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: var(--bg-tertiary);
+  position: relative;
+  overflow: hidden;
+}
+
+.gif-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 2rem;
+  text-align: center;
+  color: var(--text-tertiary);
+}
+
+.gif-placeholder svg {
+  opacity: 0.3;
+}
+
+.gif-placeholder p {
+  font-size: 0.875rem;
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+.gif-placeholder code {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent);
+  background: var(--bg-primary);
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+
+.gif-placeholder .size-hint {
+  font-size: 0.7rem;
+  color: var(--text-tertiary);
+  font-family: var(--font-mono);
+}
+
+.expertise-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.expertise-content {
+  padding: 1.5rem;
+}
+
+.expertise-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+}
+
+.expertise-description {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 1024px) {
+  .expertise-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .expertise {
+    padding: 2rem 0;
+  }
+
+  .expertise-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .expertise-content {
+    padding: 1.25rem;
+  }
+
+  .expertise-title {
+    font-size: 1rem;
+  }
+
+  .expertise-description {
+    font-size: 0.8125rem;
+  }
+}
