@@ -1,40 +1,44 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
-import awsGif from '../assets/expertise/aws-expertise.gif';
-import eventDrivenGif from '../assets/expertise/event-driven.gif';
-import microservicesGif from '../assets/expertise/microservices.gif';
-import springbootGif from '../assets/expertise/springboot.gif';
-import './Expertise.css';
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import awsGif from "../assets/expertise/aws-expertise.mp4";
+import eventDrivenGif from "../assets/expertise/event-driven.mp4";
+import microservicesGif from "../assets/expertise/microservices.mp4";
+import springbootGif from "../assets/expertise/springboot.mp4";
+import "./Expertise.css";
 
 const Expertise = () => {
   const sectionRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start end", "end start"]
+    offset: ["start end", "end start"],
   });
 
   const expertiseAreas = [
     {
-      title: 'AWS',
-      description: 'Multi-region cloud infrastructure on ECS, Aurora, S3, and Lambda',
-      gif: awsGif
+      title: "AWS",
+      description:
+        "Multi-region cloud infrastructure on ECS, Aurora, S3, and Lambda",
+      gif: awsGif,
     },
     {
-      title: 'Event-Driven Architectures',
-      description: 'High-throughput Kafka pipelines with DLQ and replay mechanisms',
-      gif: eventDrivenGif
+      title: "Event-Driven Architectures",
+      description:
+        "High-throughput Kafka pipelines with DLQ and replay mechanisms",
+      gif: eventDrivenGif,
     },
     {
-      title: 'Microservices',
-      description: 'Production-grade distributed systems handling millions of requests',
-      gif: microservicesGif
+      title: "Microservices",
+      description:
+        "Production-grade distributed systems handling millions of requests",
+      gif: microservicesGif,
     },
     {
-      title: 'Spring Boot',
-      description: 'Scalable backend services with REST APIs and optimized performance',
-      gif: springbootGif
-    }
+      title: "Spring Boot",
+      description:
+        "Scalable backend services with REST APIs and optimized performance",
+      gif: springbootGif,
+    },
   ];
 
   return (
@@ -48,8 +52,8 @@ const Expertise = () => {
           transition={{ duration: 0.8 }}
         >
           <p className="expertise-text">
-            Cloud architect specializing in distributed systems, event-driven architectures,
-            and production-grade microservices on AWS
+            Cloud architect specializing in distributed systems, event-driven
+            architectures, and production-grade microservices on AWS
           </p>
         </motion.div>
 
@@ -77,19 +81,19 @@ const ExpertiseCard = ({ area, index, scrollYProgress }) => {
   const y = useTransform(
     scrollYProgress,
     [0.1 + delay, 0.3 + delay, 0.7, 0.85],
-    [100, 0, 0, -50]
+    [100, 0, 0, -50],
   );
 
   const opacity = useTransform(
     scrollYProgress,
     [0.1 + delay, 0.25 + delay, 0.75, 0.9],
-    [0, 1, 1, 0]
+    [0, 1, 1, 0],
   );
 
   const scale = useTransform(
     scrollYProgress,
     [0.1 + delay, 0.3 + delay, 0.7, 0.85],
-    [0.8, 1, 1, 0.8]
+    [0.8, 1, 1, 0.8],
   );
 
   return (
@@ -99,7 +103,9 @@ const ExpertiseCard = ({ area, index, scrollYProgress }) => {
       style={{ y, opacity, scale }}
     >
       <div className="expertise-media">
-        <img src={area.gif} alt={area.title} />
+        <video autoPlay loop muted playsInline>
+          <source src={area.gif} type="video/mp4" />
+        </video>
       </div>
 
       <div className="expertise-content">
