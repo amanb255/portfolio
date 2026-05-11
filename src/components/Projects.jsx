@@ -1,45 +1,55 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
-import { ArrowUpRight } from 'lucide-react';
-import './Projects.css';
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import { ArrowUpRight } from "lucide-react";
+import projectImage1 from "../assets/projects/project-1.avif";
+import projectImage2 from "../assets/projects/project-2.avif";
+import projectImage3 from "../assets/projects/project-3.jpeg";
+import projectImage4 from "../assets/projects/project-4.jpeg";
+import "./Projects.css";
 
 const Projects = () => {
   const projects = [
     {
-      title: 'Multi-Region AWS Migration',
-      subtitle: 'Cloud Architecture',
-      description: '11 production services • 10TB data • Zero downtime',
-      image: 'project-1.jpg',
-      placeholder: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&h=800&fit=crop',
-      technologies: ['AWS', 'Terraform', 'ECS'],
-      link: '#',
+      title: "Gym Tracker",
+      subtitle: "iOS App",
+      description: "Flutter • Sprinboot • Tracking",
+      image: projectImage1,
+      placeholder:
+        "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&h=800&fit=crop",
+      technologies: ["Java", "Flutter", "Springboot"],
+      link: "https://github.com/amanb255/gymtracker",
     },
     {
-      title: 'Event Streaming Pipeline',
-      subtitle: 'Distributed Systems',
-      description: 'Real-time data processing at 50K events/day',
-      image: 'project-2.jpg',
-      placeholder: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&h=800&fit=crop',
-      technologies: ['Kafka', 'Spring Boot'],
-      link: '#',
+      title: "Splitify",
+      subtitle: "Expense tracker for your needs!",
+      description: "Dashboard, Payment Tracker and bills splitting",
+      image: projectImage2,
+      placeholder:
+        "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&h=800&fit=crop",
+      technologies: ["Graphs", "Spring Boot", "React"],
+      link: "https://github.com/amanb255/splitify",
     },
     {
-      title: 'Microservices Platform',
-      subtitle: 'Backend Engineering',
-      description: 'Scalable REST APIs with circuit breaking',
-      image: 'project-3.jpg',
-      placeholder: 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=1200&h=800&fit=crop',
-      technologies: ['Java', 'Spring Boot'],
-      link: '#',
+      title: "Dermavision API",
+      subtitle: "Backend Engineering",
+      description:
+        "CNN model for Skin Cancer Detection through image processing",
+      image: projectImage3,
+      placeholder:
+        "https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=1200&h=800&fit=crop",
+      technologies: ["CNN", "Python", "Flask"],
+      link: "https://github.com/amanb255/dermavision-api",
     },
     {
-      title: 'Infrastructure Automation',
-      subtitle: 'DevOps',
-      description: 'CI/CD pipelines with GitHub Actions',
-      image: 'project-4.jpg',
-      placeholder: 'https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?w=1200&h=800&fit=crop',
-      technologies: ['GitHub Actions', 'Docker'],
-      link: '#',
+      title: "DermaVision",
+      subtitle: "FullStack WebApp",
+      description:
+        "WebApp with Api integration to store create new scans and reports",
+      image: projectImage4,
+      placeholder:
+        "https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?w=1200&h=800&fit=crop",
+      technologies: ["Javascript", "React", "Redux"],
+      link: "https://github.com/amanb255/dermavision-frontend",
     },
   ];
 
@@ -71,32 +81,24 @@ const ProjectCard = ({ project, index }) => {
 
   const { scrollYProgress } = useScroll({
     target: cardRef,
-    offset: ["start end", "end start"]
+    offset: ["start end", "end start"],
   });
 
   // 3D rotation effect - cards lay flat and stand up
   const rotateX = useTransform(
     scrollYProgress,
     [0, 0.3, 0.7, 1],
-    [75, 0, 0, -75]
+    [75, 0, 0, -75],
   );
 
-  const y = useTransform(
-    scrollYProgress,
-    [0, 0.5, 1],
-    [200, 0, -200]
-  );
+  const y = useTransform(scrollYProgress, [0, 0.5, 1], [200, 0, -200]);
 
-  const opacity = useTransform(
-    scrollYProgress,
-    [0, 0.2, 0.8, 1],
-    [0, 1, 1, 0]
-  );
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
   const scale = useTransform(
     scrollYProgress,
     [0, 0.3, 0.7, 1],
-    [0.8, 1, 1, 0.8]
+    [0.8, 1, 1, 0.8],
   );
 
   return (
@@ -108,12 +110,17 @@ const ProjectCard = ({ project, index }) => {
         opacity,
         scale,
         rotateX,
-        transformPerspective: 1200
+        transformPerspective: 1200,
       }}
     >
-      <a href={project.link} className="project-link-wrapper">
+      <a
+        href={project.link}
+        className="project-link-wrapper"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <div className="project-image-wrapper">
-          <img src={project.placeholder} alt={project.title} />
+          <img src={project.image || project.placeholder} alt={project.title} />
         </div>
 
         <motion.div
@@ -128,7 +135,9 @@ const ProjectCard = ({ project, index }) => {
             <p className="project-description-new">{project.description}</p>
             <div className="project-tech-new">
               {project.technologies.map((tech, i) => (
-                <span key={i} className="tech-pill">{tech}</span>
+                <span key={i} className="tech-pill">
+                  {tech}
+                </span>
               ))}
             </div>
             <div className="project-cta">
